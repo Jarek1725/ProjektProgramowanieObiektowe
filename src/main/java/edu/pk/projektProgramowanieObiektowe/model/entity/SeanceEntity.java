@@ -19,6 +19,9 @@ public class SeanceEntity {
     @Column(name = "start_time")
     private LocalDate startTime;
 
+    @Column(name = "price")
+    private Double price;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hall_id")
     private HallEntity hallEntity;
