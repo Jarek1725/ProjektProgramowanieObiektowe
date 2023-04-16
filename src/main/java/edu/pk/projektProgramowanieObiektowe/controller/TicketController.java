@@ -1,7 +1,6 @@
 package edu.pk.projektProgramowanieObiektowe.controller;
 
-import edu.pk.projektProgramowanieObiektowe.model.DTO.BuyTicketResponseDTO;
-import edu.pk.projektProgramowanieObiektowe.model.DTO.NotFoundCustomException;
+import edu.pk.projektProgramowanieObiektowe.mapper.TicketMapper;
 import edu.pk.projektProgramowanieObiektowe.model.DTO.BuyTicketRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.model.entity.TicketEntity;
 import edu.pk.projektProgramowanieObiektowe.service.TicketService;
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class TicketController {
 
     private final TicketService ticketService;
-
+    private final TicketMapper ticketMapper;
     @PostMapping("/buy")
     public ResponseEntity<?> buyTicket(@RequestBody BuyTicketRequestDTO buyTicketDTO) {
-        BuyTicketResponseDTO buyTicketResponseDTO = ticketService.buyTicket(buyTicketDTO);
-        return new ResponseEntity<>(buyTicketResponseDTO, HttpStatus.OK);
+        TicketEntity ticketEntity = ticketService.buyTicket(buyTicketDTO);
+        return new ResponseEntity<>(ticketMapper.toBuyTicketResponseDTO(ticketEntity), HttpStatus.OK);
     }
 }

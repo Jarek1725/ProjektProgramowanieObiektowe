@@ -5,6 +5,6 @@ public record BuyTicketResponseDTO(
         Long seanceId,
         Double price,
         String userEmail,
-        String discountName
+        String discountType
 ) {
 }

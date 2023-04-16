@@ -1,12 +1,20 @@
 package edu.pk.projektProgramowanieObiektowe.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table(name = "ticket")
+@Builder
+@AllArgsConstructor
+@Getter
+@NoArgsConstructor
 public class TicketEntity {
     @Id
     @GeneratedValue

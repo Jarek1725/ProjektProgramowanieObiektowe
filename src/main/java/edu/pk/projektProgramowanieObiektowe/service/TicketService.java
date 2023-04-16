@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class TicketService {
 
-    public BuyTicketResponseDTO buyTicket(BuyTicketRequestDTO buyTicketDTO) {
-        return new BuyTicketResponseDTO(1L, 1L, 2.0, "test", null);
+    public TicketEntity buyTicket(BuyTicketRequestDTO buyTicketDTO) {
+        return TicketEntity.builder()
+                .seanceEntity(null)
+                .seatEntity(null)
+                .discountType("TEST")
+                .build();
     }
 }
