@@ -32,11 +32,11 @@ public class TicketEntity {
     @Column(name = "discount_type")
     private String discountType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "seance_id")
     private SeanceEntity seanceEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "seat_id")
     private SeatEntity seatEntity;
 }

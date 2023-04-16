@@ -1,4 +1,4 @@
-package edu.pk.projektProgramowanieObiektowe.model.DTO;
+package edu.pk.projektProgramowanieObiektowe.model.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

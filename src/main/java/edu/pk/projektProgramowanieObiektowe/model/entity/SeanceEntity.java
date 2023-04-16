@@ -2,6 +2,7 @@ package edu.pk.projektProgramowanieObiektowe.model.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "seance")
+@Getter
 public class SeanceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
 package edu.pk.projektProgramowanieObiektowe.controller;
 
 import edu.pk.projektProgramowanieObiektowe.mapper.TicketMapper;
-import edu.pk.projektProgramowanieObiektowe.model.DTO.BuyTicketRequestDTO;
+import edu.pk.projektProgramowanieObiektowe.model.request.BuyTicketRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.model.entity.TicketEntity;
 import edu.pk.projektProgramowanieObiektowe.service.TicketService;
 import lombok.AllArgsConstructor;
@@ -20,8 +20,9 @@ public class TicketController {
     private final TicketService ticketService;
     private final TicketMapper ticketMapper;
     @PostMapping("/buy")
-    public ResponseEntity<?> buyTicket(@RequestBody BuyTicketRequestDTO buyTicketDTO) {
-        TicketEntity ticketEntity = ticketService.buyTicket(buyTicketDTO);
-        return new ResponseEntity<>(ticketMapper.toBuyTicketResponseDTO(ticketEntity), HttpStatus.OK);
+    public ResponseEntity<?> buyTicket(@RequestBody BuyTicketRequestDTO buyTicketRequestDTO) {
+
+        TicketEntity result = ticketService.buyTicket(buyTicketRequestDTO);
+        return ResponseEntity.ok(ticketMapper.toTicketDTO(result));
     }
 }

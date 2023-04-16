@@ -1,4 +1,4 @@
-package edu.pk.projektProgramowanieObiektowe.model.DTO;
+package edu.pk.projektProgramowanieObiektowe.model.request;
 
 public record BuyTicketRequestDTO(
         Long seanceId,
