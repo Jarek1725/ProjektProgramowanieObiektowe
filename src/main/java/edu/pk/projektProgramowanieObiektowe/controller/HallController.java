@@ -2,6 +2,7 @@ package edu.pk.projektProgramowanieObiektowe.controller;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.HallEntity;
 import edu.pk.projektProgramowanieObiektowe.model.request.CreateHallRequestDTO;
+import edu.pk.projektProgramowanieObiektowe.model.request.DeleteHallRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.model.response.CreateHallResponseDTO;
 import edu.pk.projektProgramowanieObiektowe.repository.HallRepository;
 import edu.pk.projektProgramowanieObiektowe.service.HallService;
@@ -15,17 +16,22 @@ import java.util.List;
 @RequestMapping("/hall")
 @AllArgsConstructor
 public class HallController {
-    private final HallRepository hallRepository;
     private final HallService hallService;
 
     @GetMapping
     public List<HallEntity> getAllHalls(){
-        return hallRepository.findAll();
+        return hallService.getAllHalls();
     }
     @PostMapping("/add")
     public ResponseEntity<?> createHall(@RequestBody CreateHallRequestDTO hall) {
         hallService.createHall(hall);
-        return ResponseEntity.ok("test");
+        return ResponseEntity.ok("hall added");
 
+    }
+
+    @DeleteMapping("{hallId}")
+    public void /*ResponseEntity<?>*/ deleteHall(@PathVariable("hallId") @RequestBody DeleteHallRequestDTO id){
+        hallService.deleteHall(id);
+        /*return ResponseEntity.ok("hall deleted");*/
     }
 }
