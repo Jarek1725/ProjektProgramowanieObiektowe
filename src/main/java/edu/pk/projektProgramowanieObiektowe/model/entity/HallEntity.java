@@ -1,5 +1,6 @@
 package edu.pk.projektProgramowanieObiektowe.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -21,9 +22,11 @@ public class HallEntity {
     private String status;
 
     @OneToMany(mappedBy = "hallEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<SeanceEntity> seanceEntity = new HashSet<>();
 
     @OneToMany(mappedBy = "hallEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<SeatEntity> seatEntity = new HashSet<>();
 
     public Long getId() {

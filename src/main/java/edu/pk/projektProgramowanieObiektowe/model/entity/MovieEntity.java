@@ -1,10 +1,15 @@
 package edu.pk.projektProgramowanieObiektowe.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "movie")
 public class MovieEntity{
@@ -31,5 +36,6 @@ public class MovieEntity{
     private String actors;
 
     @OneToMany(mappedBy = "movieEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<SeanceEntity> seanceEntity = new HashSet<>();
 }
