@@ -1,10 +1,14 @@
 package edu.pk.projektProgramowanieObiektowe.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "movie")
 public class MovieEntity{
