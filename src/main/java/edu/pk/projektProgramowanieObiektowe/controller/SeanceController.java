@@ -1,6 +1,7 @@
 package edu.pk.projektProgramowanieObiektowe.controller;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.SeanceEntity;
+import edu.pk.projektProgramowanieObiektowe.model.request.CreateSeanceRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.service.SeanceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +24,9 @@ public class SeanceController {
         return ResponseEntity.ok(seances);
     }
     @PostMapping("/add")
-    public ResponseEntity<SeanceEntity> addSeance(@RequestBody SeanceEntity seanceEntity) {
+    public ResponseEntity<SeanceEntity> addSeance(@RequestBody CreateSeanceRequestDTO seanceDTO) {
         // Logic for creating and saving a new SeanceEntity
-        SeanceEntity createdSeance = seanceService.addSeance(seanceEntity);
-
+        SeanceEntity createdSeance = seanceService.addSeance(seanceDTO);
         // Return the newly created SeanceEntity in the response with a success status
         return ResponseEntity.status(HttpStatus.CREATED).body(createdSeance);
     }
