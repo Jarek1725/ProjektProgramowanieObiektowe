@@ -2,8 +2,6 @@ package edu.pk.projektProgramowanieObiektowe.controller;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.MovieEntity;
 import edu.pk.projektProgramowanieObiektowe.service.MovieService;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

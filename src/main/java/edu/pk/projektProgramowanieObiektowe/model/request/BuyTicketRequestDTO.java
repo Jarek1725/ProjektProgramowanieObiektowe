@@ -1,9 +1,10 @@
 package edu.pk.projektProgramowanieObiektowe.model.request;
 
+import edu.pk.projektProgramowanieObiektowe.model.DTO.SeatDTO;
+
 public record BuyTicketRequestDTO(
         Long seanceId,
-        Long seatId,
         String userEmail,
-        String discountName
+        SeatDTO seat
 ) {
 }

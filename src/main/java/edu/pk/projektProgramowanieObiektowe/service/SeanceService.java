@@ -1,9 +1,6 @@
 package edu.pk.projektProgramowanieObiektowe.service;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.SeanceEntity;
-import edu.pk.projektProgramowanieObiektowe.model.request.CreateSeanceRequestDTO;
-import edu.pk.projektProgramowanieObiektowe.repository.HallRepository;
-import edu.pk.projektProgramowanieObiektowe.repository.MovieRepository;
 import edu.pk.projektProgramowanieObiektowe.repository.SeanceRepository;
 import org.springframework.stereotype.Service;
 

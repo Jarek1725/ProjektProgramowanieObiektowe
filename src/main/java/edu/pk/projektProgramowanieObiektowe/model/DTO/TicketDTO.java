@@ -5,11 +5,8 @@ import java.util.UUID;
 
 public record TicketDTO(
         String userEmail,
-        UUID ticketId,
+        Long ticketId,
         LocalDate bookingDate,
-        Integer discountInPercentage,
-        String discountType,
-        SeanceDTO seanceDTO,
-        SeatDTO seatDTO
+        String movieTitle
 ) {
 }
