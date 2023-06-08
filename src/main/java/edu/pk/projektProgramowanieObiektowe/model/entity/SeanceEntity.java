@@ -6,8 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +26,10 @@ public class SeanceEntity {
     private Long id;
 
     @Column(name = "start_time")
-    private LocalDate startTime;
+    private LocalDateTime startTime;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 
     @Column(name = "price")
     private Double price;
@@ -37,9 +42,7 @@ public class SeanceEntity {
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private MovieEntity movieEntity;
 
-    @Column(name = "duration")
-    private Integer duration;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "seanceEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<TicketEntity> ticketEntity = new HashSet<>();
 

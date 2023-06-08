@@ -1,11 +1,12 @@
 package edu.pk.projektProgramowanieObiektowe.model.DTO;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 
 public record SeanceDTO(
     Double price,
-    LocalDate startTime,
+    LocalDateTime startTime,
     HallDTO hallDTO,
     MovieDTO movieDTO,
     HashSet<TicketDTO> ticketDTOs

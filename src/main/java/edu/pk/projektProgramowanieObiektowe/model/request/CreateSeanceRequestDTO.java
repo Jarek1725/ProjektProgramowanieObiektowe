@@ -1,15 +1,15 @@
 package edu.pk.projektProgramowanieObiektowe.model.request;
 
-import edu.pk.projektProgramowanieObiektowe.model.entity.HallEntity;
-import edu.pk.projektProgramowanieObiektowe.model.entity.MovieEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class CreateSeanceRequestDTO {
-    private LocalDate startTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private Double price;
     private Long hallEntityId;
     private Long movieEntityId;
