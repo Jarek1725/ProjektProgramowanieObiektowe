@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 public class NotFoundCustomException extends RuntimeException {
     private Class<?> objectType;
 
-    public NotFoundCustomException(String id, Class<?> objectType) {
-        super(objectType.getSimpleName() +  "with id: " + id + " not found");
+    public NotFoundCustomException(Long id, Class<?> objectType) {
+        super(objectType.getSimpleName() +  " with id: " + id + " not found");
     }
 }
