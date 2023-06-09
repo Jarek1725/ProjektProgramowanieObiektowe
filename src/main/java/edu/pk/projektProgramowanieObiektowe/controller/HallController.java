@@ -26,7 +26,6 @@ public class HallController {
     public ResponseEntity<?> createHall(@RequestBody CreateHallRequestDTO hall) {
         hallService.createHall(hall);
         return ResponseEntity.ok("hall added");
-
     }
 
     @DeleteMapping("{hallId}")

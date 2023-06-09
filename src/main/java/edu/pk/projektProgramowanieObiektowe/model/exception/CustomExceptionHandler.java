@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class CustomExceptionHandler {
     @ExceptionHandler(CannotCreateCustomException.class)
     public ResponseEntity<Object> handleCannotCreateCustomException(CannotCreateCustomException ex) {
+        System.out.println(ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundCustomException.class)
     public ResponseEntity<Object> handleNotFoundCustomException(NotFoundCustomException ex) {
+        System.out.println(ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
 }

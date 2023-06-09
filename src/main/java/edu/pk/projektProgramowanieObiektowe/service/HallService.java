@@ -26,6 +26,8 @@ public class HallService {
         HallEntity hall = new HallEntity();
         hall.setStatus(chrDTO.status());
         hall.setName(chrDTO.name());
+        hall.setColumnSeats(chrDTO.columnSeats());
+        hall.setRowSeats(chrDTO.rowSeats());
         return hall;
     }
 
