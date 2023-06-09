@@ -1,6 +1,7 @@
 package edu.pk.projektProgramowanieObiektowe.service;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.HallEntity;
+import edu.pk.projektProgramowanieObiektowe.model.exception.CannotCreateCustomException;
 import edu.pk.projektProgramowanieObiektowe.model.request.CreateHallRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.model.request.DeleteHallRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.repository.HallRepository;
@@ -22,6 +23,15 @@ public class HallService {
         return "hall added";
     }
 
+    public void  deleteHall(Long id) {
+        HallEntity hall = hallRepository.findById(id).orElse(null);
+        if (hall != null) {
+            hallRepository.delete(hall);
+        } else {
+            throw new CannotCreateCustomException(HallEntity.class, "cannot delete hall");
+        }
+    }
+
     private HallEntity createHallRequestDTOToHallEntity(CreateHallRequestDTO chrDTO){
         HallEntity hall = new HallEntity();
         hall.setStatus(chrDTO.status());
@@ -29,11 +39,5 @@ public class HallService {
         hall.setColumnSeats(chrDTO.columnSeats());
         hall.setRowSeats(chrDTO.rowSeats());
         return hall;
-    }
-
-    public void /*String*/ deleteHall(DeleteHallRequestDTO id) {
-        System.out.println(id.Id());
-        hallRepository.deleteById(id.Id());
-        /*return "hall deleted";*/
     }
 }

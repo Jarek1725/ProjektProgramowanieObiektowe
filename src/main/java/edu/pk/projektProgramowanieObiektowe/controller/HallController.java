@@ -29,8 +29,8 @@ public class HallController {
     }
 
     @DeleteMapping("{hallId}")
-    public void /*ResponseEntity<?>*/ deleteHall(@PathVariable("hallId") @RequestBody DeleteHallRequestDTO id){
+    public ResponseEntity<?> deleteHall(@PathVariable("hallId") Long id){
         hallService.deleteHall(id);
-        /*return ResponseEntity.ok("hall deleted");*/
+        return ResponseEntity.ok("hall deleted");
     }
 }
