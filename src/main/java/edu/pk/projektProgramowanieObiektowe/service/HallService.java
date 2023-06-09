@@ -1,6 +1,7 @@
 package edu.pk.projektProgramowanieObiektowe.service;
 
 import edu.pk.projektProgramowanieObiektowe.model.entity.HallEntity;
+import edu.pk.projektProgramowanieObiektowe.model.exception.CannotCreateCustomException;
 import edu.pk.projektProgramowanieObiektowe.model.request.CreateHallRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.model.request.DeleteHallRequestDTO;
 import edu.pk.projektProgramowanieObiektowe.repository.HallRepository;
@@ -17,23 +18,27 @@ public class HallService {
     public List<HallEntity> getAllHalls(){
         return hallRepository.findAll();
     }
-    public String createHall(CreateHallRequestDTO hall) {
-        hallRepository.save(createHallRequestDTOToHallEntity(hall));
-        return "hall added";
+
+    public void  deleteHall(Long id) {
+        HallEntity hall = hallRepository.findById(id).orElse(null);
+        if (hall != null) {
+            hallRepository.delete(hall);
+        } else {
+            throw new CannotCreateCustomException(HallEntity.class, "cannot delete hall");
+        }
     }
 
-    private HallEntity createHallRequestDTOToHallEntity(CreateHallRequestDTO chrDTO){
+    public HallEntity createHallRequestDTOToHallEntity(CreateHallRequestDTO chrDTO){
+        if( hallRepository.existsByName(chrDTO.name() )){
+            throw new CannotCreateCustomException(HallEntity.class, "name already exists");
+        }
+
         HallEntity hall = new HallEntity();
         hall.setStatus(chrDTO.status());
         hall.setName(chrDTO.name());
         hall.setColumnSeats(chrDTO.columnSeats());
         hall.setRowSeats(chrDTO.rowSeats());
-        return hall;
-    }
 
-    public void /*String*/ deleteHall(DeleteHallRequestDTO id) {
-        System.out.println(id.Id());
-        hallRepository.deleteById(id.Id());
-        /*return "hall deleted";*/
+        return hallRepository.save(hall);
     }
 }

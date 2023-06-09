@@ -1,5 +1,6 @@
 package edu.pk.projektProgramowanieObiektowe.service;
 
+import edu.pk.projektProgramowanieObiektowe.model.entity.HallEntity;
 import edu.pk.projektProgramowanieObiektowe.model.entity.MovieEntity;
 import edu.pk.projektProgramowanieObiektowe.model.entity.SeanceEntity;
 import edu.pk.projektProgramowanieObiektowe.model.exception.CannotCreateCustomException;
@@ -38,12 +39,17 @@ public class SeanceService {
         Integer duration = movieEntity.getDuration();
         LocalDateTime endTime = calculateEndTime(startTime, duration);
         Long hallId = seanceDTO.getHallEntityId();
-        System.out.println("sT: " + startTime + " | dur: " + duration + " | eT: " + endTime);
 
         boolean seanceConflictExists = seanceRepository.existsByHallEntityIdAndTimeRange(hallId, startTime, endTime);
 
         if (seanceConflictExists) {
             throw new CannotCreateCustomException(SeanceEntity.class,"Hall is occupied");
+        }
+
+        HallEntity hallEntity = hallRepository.findById(seanceDTO.getHallEntityId()).orElse(null);
+
+        if (hallEntity.getStatus() != "aktywna"){
+            throw new CannotCreateCustomException(SeanceEntity.class, "Hall is not active");
         }
 
         SeanceEntity seance = new SeanceEntity();
