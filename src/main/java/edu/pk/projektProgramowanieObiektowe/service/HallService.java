@@ -18,10 +18,6 @@ public class HallService {
     public List<HallEntity> getAllHalls(){
         return hallRepository.findAll();
     }
-    public String createHall(CreateHallRequestDTO hall) {
-        hallRepository.save(createHallRequestDTOToHallEntity(hall));
-        return "hall added";
-    }
 
     public void  deleteHall(Long id) {
         HallEntity hall = hallRepository.findById(id).orElse(null);
@@ -32,12 +28,17 @@ public class HallService {
         }
     }
 
-    private HallEntity createHallRequestDTOToHallEntity(CreateHallRequestDTO chrDTO){
+    public HallEntity createHallRequestDTOToHallEntity(CreateHallRequestDTO chrDTO){
+        if( hallRepository.existsByName(chrDTO.name() )){
+            throw new CannotCreateCustomException(HallEntity.class, "name already exists");
+        }
+
         HallEntity hall = new HallEntity();
         hall.setStatus(chrDTO.status());
         hall.setName(chrDTO.name());
         hall.setColumnSeats(chrDTO.columnSeats());
         hall.setRowSeats(chrDTO.rowSeats());
-        return hall;
+
+        return hallRepository.save(hall);
     }
 }

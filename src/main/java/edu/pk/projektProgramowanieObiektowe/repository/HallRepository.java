@@ -5,9 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface HallRepository extends JpaRepository <HallEntity, Long>{
 //    @Query("select * from HallEntity as hall where: ")
-    HallEntity findByName(String name);
+    Optional<HallEntity> findByName(String name);
+
+    boolean existsByName(String name);
 }
 

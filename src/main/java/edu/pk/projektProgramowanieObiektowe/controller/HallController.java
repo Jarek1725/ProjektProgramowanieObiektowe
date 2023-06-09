@@ -24,7 +24,7 @@ public class HallController {
     }
     @PostMapping("/add")
     public ResponseEntity<?> createHall(@RequestBody CreateHallRequestDTO hall) {
-        hallService.createHall(hall);
+        hallService.createHallRequestDTOToHallEntity(hall);
         return ResponseEntity.ok("hall added");
     }
 
